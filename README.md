@@ -1,6 +1,8 @@
 ---
 license: apache-2.0
 pipeline_tag: text-generation
+tags:
+- finetuned
 ---
 
 # Model Card for Mistral-7B-Instruct-v0.1
