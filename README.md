@@ -26,3 +26,13 @@ instructions = ["[INST] What is your favourite condiment? [/INST]",
 encodeds = [tokenizer.encode(instruction, add_special_tokens=i==0) 
 						for i, instruction in enumerate(instructions)]
 ```
+
+## Model Architecture
+This instruction model is based on Mistral-7B-v0.1, a transformer model with the following architecture choices:
+- Grouped-Query Attention
+- Sliding-Window Attention
+- Byte-fallback BPE tokenizer
+
+## The Mistral AI Team
+
+Albert Jiang, Alexandre Sablayrolles, Arthur Mensch, Chris Bamford, Devendra Singh Chaplot, Diego de las Casas, Florian Bressand, Gianna Lengyel, Guillaume Lample, Lélio Renard Lavaud, Lucile Saulnier, Marie-Anne Lachaux, Pierre Stock, Teven Le Scao, Thibaut Lavril, Thomas Wang, Timothée Lacroix, William El Sayed.
