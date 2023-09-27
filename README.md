@@ -7,7 +7,7 @@ pipeline_tag: text-generation
 
 The Mistral-7B-Instruct-v0.1 Large Language Model (LLM) is a instruct fine-tuned version of the [Mistral-7B-v0.1](https://huggingface.co/mistralai/Mistral-7B-v0.1) generative text model using a variety of publicly available conversation datasets.
 
-For full details of this model please read our [Release blog post](https://mistral.ai/news/announcing-mistral-7b/)
+For full details of this model please read our [release blog post](https://mistral.ai/news/announcing-mistral-7b/)
 
 ## Instruction format
 
@@ -15,16 +15,26 @@ In order to leverage instruction fine-tuning, your prompt should be surrounded b
 
 E.g.
 
-```bash
-from transformers import AutoTokenizer
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-tokenizer = AutoTokenizer.from_pretrained("[mistralai/](https://huggingface.co/mistralai/Mistral-7B-v0.1)Mistral-7B-Instruct-v0.1")
-instructions = ["[INST] What is your favourite condiment? [/INST]", 
-                "[INST] Do you have mayonnaise recipes? [/INST]", 
-                "[INST] This is healthy, right? [/INST]"]
+device = "cuda" # the device to load the model onto
 
-encodeds = [tokenizer.encode(instruction, add_special_tokens=i==0) 
-						for i, instruction in enumerate(instructions)]
+model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1") #, token="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")
+tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1") #, token="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")
+
+text = "<s>[INST] What is your favourite condiment? [/INST]"
+"Well, I'm quite partial to a good squeeze of fresh lemon juice. It adds just the right amount of zesty flavour to whatever I'm cooking up in the kitchen!</s> "
+"[INST] Do you have mayonnaise recipes? [/INST]"
+
+encodeds = tokenizer(instructions, return_tensors="pt", add_special_tokens=False)
+
+model_inputs = encodeds.to(device)
+model.to(device)
+
+generated_ids = model.generate(**model_inputs, max_new_tokens=1000, do_sample=True)
+decoded = tokenizer.batch_decode(generated_ids)
+print(decoded[0])
 ```
 
 ## Model Architecture
