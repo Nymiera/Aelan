@@ -7,7 +7,7 @@ pipeline_tag: text-generation
 
 The Mistral-7B-Instruct-v0.1 Large Language Model (LLM) is a instruct fine-tuned version of the [Mistral-7B-v0.1](https://huggingface.co/mistralai/Mistral-7B-v0.1) generative text model using a variety of publicly available conversation datasets.
 
-For full details of this model please read our [Release blog post](https://mistral.ai/news/announcing-mistral-7b-v0.1/)
+For full details of this model please read our [Release blog post](https://mistral.ai/news/announcing-mistral-7b/)
 
 ## Instruction format
 
