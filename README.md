@@ -29,7 +29,7 @@ text = "<s>[INST] What is your favourite condiment? [/INST]"
 "Well, I'm quite partial to a good squeeze of fresh lemon juice. It adds just the right amount of zesty flavour to whatever I'm cooking up in the kitchen!</s> "
 "[INST] Do you have mayonnaise recipes? [/INST]"
 
-encodeds = tokenizer(instructions, return_tensors="pt", add_special_tokens=False)
+encodeds = tokenizer(text, return_tensors="pt", add_special_tokens=False)
 
 model_inputs = encodeds.to(device)
 model.to(device)
