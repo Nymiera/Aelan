@@ -20,8 +20,8 @@ from transformers import AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("[mistralai/](https://huggingface.co/mistralai/Mistral-7B-v0.1)Mistral-7B-Instruct-v0.1")
 instructions = ["[INST] What is your favourite condiment? [/INST]", 
-								"[INST] Do you have mayonnaise recipes? [/INST]", 
-								"[INST] This is healthy, right? [/INST]"]
+                "[INST] Do you have mayonnaise recipes? [/INST]", 
+                "[INST] This is healthy, right? [/INST]"]
 
 encodeds = [tokenizer.encode(instruction, add_special_tokens=i==0) 
 						for i, instruction in enumerate(instructions)]
