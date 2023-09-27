@@ -11,7 +11,7 @@ For full details of this model please read our [Release blog post](https://mistr
 
 ## Instruction format
 
-In order to leverage instruction fine-tuning, your prompt should be surrounded by `[INST]` and `[\INST] tokens. The very first instruction should begin with a begin of sentence id. The next instructions should not. The assistant generation will be ended by the end-of-sentence token id.
+In order to leverage instruction fine-tuning, your prompt should be surrounded by `[INST]` and `[\INST]` tokens. The very first instruction should begin with a begin of sentence id. The next instructions should not. The assistant generation will be ended by the end-of-sentence token id.
 
 E.g.
 
