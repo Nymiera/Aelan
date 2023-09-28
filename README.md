@@ -73,6 +73,12 @@ pip install git+https://github.com/huggingface/transformers
 
 This should not be required after transformers-v4.33.4.
 
+## Limitations
+
+The Mistral 7B Instruct model is a quick demonstration that the base model can be easily fine-tuned to achieve compelling performance.
+We're looking forward to engaging with the community on ways to make the model finally respect guardrails,
+allowing for deployment in environments requiring moderated outputs.
+
 ## The Mistral AI Team
 
 Albert Jiang, Alexandre Sablayrolles, Arthur Mensch, Chris Bamford, Devendra Singh Chaplot, Diego de las Casas, Florian Bressand, Gianna Lengyel, Guillaume Lample, Lélio Renard Lavaud, Lucile Saulnier, Marie-Anne Lachaux, Pierre Stock, Teven Le Scao, Thibaut Lavril, Thomas Wang, Timothée Lacroix, William El Sayed.
