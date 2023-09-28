@@ -16,6 +16,13 @@ For full details of this model please read our [release blog post](https://mistr
 In order to leverage instruction fine-tuning, your prompt should be surrounded by `[INST]` and `[\INST]` tokens. The very first instruction should begin with a begin of sentence id. The next instructions should not. The assistant generation will be ended by the end-of-sentence token id.
 
 E.g.
+```
+text = "<s>[INST] What is your favourite condiment? [/INST]"
+"Well, I'm quite partial to a good squeeze of fresh lemon juice. It adds just the right amount of zesty flavour to whatever I'm cooking up in the kitchen!</s> "
+"[INST] Do you have mayonnaise recipes? [/INST]"
+```
+
+This format is available as a [chat template](https://huggingface.co/docs/transformers/main/chat_templating) via the `apply_chat_template()` method:
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -25,16 +32,18 @@ device = "cuda" # the device to load the model onto
 model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
 tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
 
-text = "<s>[INST] What is your favourite condiment? [/INST]"
-"Well, I'm quite partial to a good squeeze of fresh lemon juice. It adds just the right amount of zesty flavour to whatever I'm cooking up in the kitchen!</s> "
-"[INST] Do you have mayonnaise recipes? [/INST]"
+messages = [
+    {"role": "user", "content": "What is your favourite condiment?"},
+    {"role": "assistant", "content": "Well, I'm quite partial to a good squeeze of fresh lemon juice. It adds just the right amount of zesty flavour to whatever I'm cooking up in the kitchen!"},
+    {"role": "user", "content": "Do you have mayonnaise recipes?"}
+]
 
-encodeds = tokenizer(text, return_tensors="pt", add_special_tokens=False)
+encodeds = tokenizer.apply_chat_template(messages, return_tensors="pt")
 
 model_inputs = encodeds.to(device)
 model.to(device)
 
-generated_ids = model.generate(**model_inputs, max_new_tokens=1000, do_sample=True)
+generated_ids = model.generate(model_inputs, max_new_tokens=1000, do_sample=True)
 decoded = tokenizer.batch_decode(generated_ids)
 print(decoded[0])
 ```
