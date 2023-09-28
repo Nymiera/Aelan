@@ -45,6 +45,25 @@ This instruction model is based on Mistral-7B-v0.1, a transformer model with the
 - Sliding-Window Attention
 - Byte-fallback BPE tokenizer
 
+## Troubleshooting
+- If you see the following error:
+```
+Traceback (most recent call last):
+File "", line 1, in
+File "/transformers/models/auto/auto_factory.py", line 482, in from_pretrained
+config, kwargs = AutoConfig.from_pretrained(
+File "/transformers/models/auto/configuration_auto.py", line 1022, in from_pretrained
+config_class = CONFIG_MAPPING[config_dict["model_type"]]
+File "/transformers/models/auto/configuration_auto.py", line 723, in getitem
+raise KeyError(key)
+KeyError: 'mistral'
+```
+
+Installing transformers from source should solve the issue
+pip install git+https://github.com/huggingface/transformers
+
+This should not be required after transformers-v4.33.4.
+
 ## The Mistral AI Team
 
 Albert Jiang, Alexandre Sablayrolles, Arthur Mensch, Chris Bamford, Devendra Singh Chaplot, Diego de las Casas, Florian Bressand, Gianna Lengyel, Guillaume Lample, Lélio Renard Lavaud, Lucile Saulnier, Marie-Anne Lachaux, Pierre Stock, Teven Le Scao, Thibaut Lavril, Thomas Wang, Timothée Lacroix, William El Sayed.
