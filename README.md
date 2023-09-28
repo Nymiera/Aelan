@@ -75,9 +75,9 @@ This should not be required after transformers-v4.33.4.
 
 ## Limitations
 
-The Mistral 7B Instruct model is a quick demonstration that the base model can be easily fine-tuned to achieve compelling performance.
-We're looking forward to engaging with the community on ways to make the model finally respect guardrails,
-allowing for deployment in environments requiring moderated outputs.
+The Mistral 7B Instruct model is a quick demonstration that the base model can be easily fine-tuned to achieve compelling performance. 
+It does not have any moderation mechanisms. We're looking forward to engaging with the community on ways to
+make the model finely respect guardrails, allowing for deployment in environments requiring moderated outputs.
 
 ## The Mistral AI Team
 
