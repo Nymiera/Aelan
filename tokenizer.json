@@ -9,7 +9,7 @@
       "single_word": false,
       "lstrip": false,
       "rstrip": false,
-      "normalized": true,
+      "normalized": false,
       "special": true
     },
     {
@@ -18,7 +18,7 @@
       "single_word": false,
       "lstrip": false,
       "rstrip": false,
-      "normalized": true,
+      "normalized": false,
       "special": true
     },
     {
@@ -27,7 +27,7 @@
       "single_word": false,
       "lstrip": false,
       "rstrip": false,
-      "normalized": true,
+      "normalized": false,
       "special": true
     }
   ],
