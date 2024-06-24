@@ -12,6 +12,62 @@ widget:
 
 # Model Card for Mistral-7B-Instruct-v0.1
 
+### 
+
+> [!CAUTION]
+> ⚠️ 
+> The `transformers` tokenizer might give incorrect results as it has not been tested by the Mistral team. To make sure that your encoding and decoding is correct, please use `mistral_common` as shown below:
+
+## Encode and Decode with `mistral_common`
+            
+```py
+from mistral_common.tokens.tokenizers.mistral import MistralTokenizer
+from mistral_common.protocol.instruct.messages import UserMessage
+from mistral_common.protocol.instruct.request import ChatCompletionRequest
+ 
+mistral_models_path = "MISTRAL_MODELS_PATH"
+ 
+tokenizer = MistralTokenizer.v1()
+ 
+completion_request = ChatCompletionRequest(messages=[UserMessage(content="Explain Machine Learning to me in a nutshell.")])
+ 
+tokens = tokenizer.encode_chat_completion(completion_request).tokens
+```
+ 
+## Inference with `mistral_inference`
+ 
+ ```py
+from mistral_inference.model import Transformer
+from mistral_inference.generate import generate
+ 
+model = Transformer.from_folder(mistral_models_path)
+out_tokens, _ = generate([tokens], model, max_tokens=64, temperature=0.0, eos_id=tokenizer.instruct_tokenizer.tokenizer.eos_id)
+
+result = tokenizer.decode(out_tokens[0])
+
+print(result)
+```
+
+## Inference with hugging face `transformers`
+ 
+```py
+from transformers import AutoModelForCausalLM
+ 
+model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
+model.to("cuda")
+ 
+generated_ids = model.generate(tokens, max_new_tokens=1000, do_sample=True)
+
+# decode with mistral tokenizer
+result = tokenizer.decode(generated_ids[0].tolist())
+print(result)
+```
+
+> [!TIP]
+> PRs to correct the `transformers` tokenizer so that it gives 1-to-1 the same results as the `mistral_common` reference implementation are very welcome!
+            
+---
+
 The Mistral-7B-Instruct-v0.1 Large Language Model (LLM) is a instruct fine-tuned version of the [Mistral-7B-v0.1](https://huggingface.co/mistralai/Mistral-7B-v0.1) generative text model using a variety of publicly available conversation datasets.
 
 For full details of this model please read our [paper](https://arxiv.org/abs/2310.06825) and [release blog post](https://mistral.ai/news/announcing-mistral-7b/).
