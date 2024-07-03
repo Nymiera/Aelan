@@ -1,8 +1,8 @@
 ---
 license: apache-2.0
-pipeline_tag: text-generation
 tags:
 - finetuned
+pipeline_tag: text-generation
 inference: true
 widget:
 - messages:
@@ -12,11 +12,6 @@ widget:
 
 # Model Card for Mistral-7B-Instruct-v0.1
 
-### 
-
-> [!CAUTION]
-> ⚠️ 
-> The `transformers` tokenizer might give incorrect results as it has not been tested by the Mistral team. To make sure that your encoding and decoding is correct, please use `mistral_common` as shown below:
 
 ## Encode and Decode with `mistral_common`
             

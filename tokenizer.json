@@ -31,23 +31,13 @@
       "special": true
     }
   ],
-  "normalizer": {
-    "type": "Sequence",
-    "normalizers": [
-      {
-        "type": "Prepend",
-        "prepend": "▁"
-      },
-      {
-        "type": "Replace",
-        "pattern": {
-          "String": " "
-        },
-        "content": "▁"
-      }
-    ]
+  "normalizer": null,
+  "pre_tokenizer": {
+    "type": "Metaspace",
+    "replacement": "▁",
+    "prepend_scheme": "first",
+    "split": false
   },
-  "pre_tokenizer": null,
   "post_processor": {
     "type": "TemplateProcessing",
     "single": [
@@ -134,6 +124,7 @@
     "end_of_word_suffix": null,
     "fuse_unk": true,
     "byte_fallback": true,
+    "ignore_merges": false,
     "vocab": {
       "<unk>": 0,
       "<s>": 1,
