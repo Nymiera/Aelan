@@ -8,6 +8,8 @@ widget:
 - messages:
   - role: user
     content: What is your favorite condiment?
+    
+extra_gated_description: If you want to learn more about how we process your personal data, please read our <a href="https://mistral.ai/terms/">Privacy Policy</a>.
 ---
 
 # Model Card for Mistral-7B-Instruct-v0.1
