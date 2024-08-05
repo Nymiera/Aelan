@@ -34,7 +34,7 @@ tokens = tokenizer.encode_chat_completion(completion_request).tokens
 ## Inference with `mistral_inference`
  
  ```py
-from mistral_inference.model import Transformer
+from mistral_inference.transformer import Transformer
 from mistral_inference.generate import generate
  
 model = Transformer.from_folder(mistral_models_path)
