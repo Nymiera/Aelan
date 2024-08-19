@@ -2,6 +2,7 @@
 license: apache-2.0
 tags:
 - finetuned
+base_model: mistralai/Mistral-7B-v0.1
 pipeline_tag: text-generation
 inference: true
 widget:
